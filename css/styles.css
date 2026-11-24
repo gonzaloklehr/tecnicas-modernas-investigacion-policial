@@ -233,18 +233,11 @@ main {
   color: var(--on-dark);
 }
 
-.brand-mark {
-  display: grid;
-  width: 36px;
-  height: 36px;
+.brand-shield {
+  display: block;
+  width: clamp(28px, 8.75vw, 38px);
+  height: auto;
   flex: 0 0 auto;
-  place-items: center;
-  border: 1px solid var(--ochre);
-  color: var(--ochre);
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: .04em;
 }
 
 .brand-copy {
@@ -254,9 +247,6 @@ main {
 .brand-copy strong,
 .brand-copy small {
   display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .brand-copy strong {
@@ -401,9 +391,6 @@ main {
 /* ---------- Elementos compartidos ---------- */
 
 .eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   margin: 0;
   color: var(--ochre-ink);
   font-family: var(--mono);
@@ -411,14 +398,6 @@ main {
   font-weight: 500;
   letter-spacing: .08em;
   line-height: 1.4;
-}
-
-.eyebrow::before {
-  width: 20px;
-  height: 1px;
-  flex: 0 0 auto;
-  background: currentColor;
-  content: "";
 }
 
 .button {
@@ -555,42 +534,55 @@ h1 {
   color: var(--on-dark);
 }
 
-/* Ficha del caso */
+/* Ficha académica */
 .cover-facts {
   min-width: 0;
-  padding: 8px 20px;
-  border-top: 4px solid var(--ochre);
-  background: var(--paper);
-  color: var(--text);
+  padding: 24px;
+  border: 1px solid rgba(243, 239, 230, .22);
+  background: rgba(243, 239, 230, .06);
+  color: var(--on-dark);
 }
-
-.fact-row {
-  display: grid;
-  gap: 4px;
-  padding: 14px 0;
-  border-bottom: 1px dashed var(--line);
+.facts-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid rgba(243, 239, 230, .25);
 }
-
-.fact-row:last-child {
-  border-bottom: 0;
-}
-
-.fact-label {
-  display: block;
-  color: var(--muted);
+.facts-kicker, .facts-year, .fact-label {
   font-family: var(--mono);
   font-size: .6875rem;
   font-weight: 500;
   letter-spacing: .08em;
+  text-transform: uppercase;
 }
-
-.fact-row strong {
-  display: block;
-  color: var(--ink);
+.facts-kicker { color: var(--ochre); }
+.facts-year, .fact-label { color: var(--on-dark-muted); }
+.facts-heading h2 {
+  margin: 8px 0 0;
+  color: var(--on-dark);
   font-family: var(--serif);
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.4;
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+.facts-list { margin: 0; }
+.fact-row {
+  display: grid;
+  gap: 7px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(243, 239, 230, .14);
+}
+.fact-row:last-child { padding-bottom: 0; border-bottom: 0; }
+.fact-row dd { margin: 0; color: var(--on-dark); font-size: .9375rem; line-height: 1.5; }
+.fact-team {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .cover-footer {
@@ -820,10 +812,6 @@ h1 {
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-}
-
-.chart-head .eyebrow::before {
-  display: none;
 }
 
 .chart-head h3 {
@@ -1171,10 +1159,6 @@ h1 {
   border-left: 3px solid var(--ochre-ink);
 }
 
-.planning-intro .eyebrow::before {
-  display: none;
-}
-
 .planning-intro > div > p:last-child {
   margin: 10px 0 0;
   color: var(--ink);
@@ -1345,12 +1329,7 @@ h1 {
 }
 
 .closing .eyebrow {
-  justify-content: center;
   color: var(--ochre);
-}
-
-.closing .eyebrow::before {
-  display: none;
 }
 
 .closing h2 {
@@ -1449,20 +1428,9 @@ h1 {
     font-size: 1.1875rem;
   }
 
-  .cover-facts {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 32px;
-    padding: 8px 28px;
-  }
-
-  .fact-row:nth-last-child(2) {
-    border-bottom: 0;
-  }
-
-  .fact-row strong {
-    font-size: 1.125rem;
-  }
+  .cover-facts { padding: 28px 32px; }
+  .facts-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+  .fact-row:nth-last-child(2) { border-bottom: 0; }
 
   .cover-footer {
     flex-direction: row;
@@ -1749,15 +1717,9 @@ h1 {
     font-size: 1.25rem;
   }
 
-  .cover-facts {
-    display: block;
-    align-self: end;
-    padding: 12px 32px;
-  }
-
-  .fact-row:nth-last-child(2) {
-    border-bottom: 1px dashed var(--line);
-  }
+  .cover-facts { align-self: end; }
+  .facts-list { display: block; }
+  .fact-row:nth-last-child(2) { border-bottom: 1px solid rgba(243, 239, 230, .14); }
 
   .cover-footer {
     grid-column: 1 / -1;
